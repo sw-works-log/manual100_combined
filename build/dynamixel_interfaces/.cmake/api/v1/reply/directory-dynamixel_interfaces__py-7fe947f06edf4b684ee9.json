@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "dynamixel_interfaces__py",
+		"source" : "/home/sw/manual_total _ws/build/dynamixel_interfaces/dynamixel_interfaces__py"
+	}
+}

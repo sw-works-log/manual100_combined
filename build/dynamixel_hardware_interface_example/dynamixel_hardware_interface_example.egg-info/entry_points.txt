@@ -1,0 +1,4 @@
+[console_scripts]
+gamepad_teleop = dynamixel_hardware_interface_example.gamepad_teleop:main
+generate_xacros = dynamixel_hardware_interface_example.generate_xacros:main
+

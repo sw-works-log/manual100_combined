@@ -1,0 +1,19 @@
+# 이 파일은 joint_state_broadcaster와 gripper_joint/base_yaw_joint position_controller를 설정한다.
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 20  # Hz
+
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+
+      # 수정: gripper_joint와 base_yaw_joint를 위한 position 명령 컨트롤러.
+      position_controller:
+        type: forward_command_controller/ForwardCommandController
+
+  position_controller:
+    ros__parameters:
+      joints:
+        - gripper_joint
+        - base_yaw_joint
+      interface_name: position

@@ -1,0 +1,1 @@
+/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_generator_cpp/dynamixel_interfaces/msg/detail/dynamixel_state__traits.hpp

@@ -1,0 +1,19 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 20
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+position_controller:
+  ros__parameters:
+    joints:
+      - shoulder_joint
+      - elbow_joint
+      # wrist 하드웨어 세팅 전까지 비활성화합니다.
+      # 활성화 시 manual_total_position_node.py의 JOINTS/rates/limits에도 같은 위치로 추가합니다.
+      # - wrist_joint
+      - gripper_joint
+      - base_yaw_joint
+    interface_name: position

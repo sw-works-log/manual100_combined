@@ -1,0 +1,82 @@
+[30.036s] Invoking command in '/home/sw/manual_total _ws/build/myactuator_rmd': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sw/manual_total _ws/install/dynamixel_hardware_interface_example:/opt/ros/humble /usr/bin/cmake /home/sw/manual_total _ws/rmd/src/myactuator_rmd -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sw/manual_total _ws/install/myactuator_rmd
+[30.101s] -- The C compiler identification is GNU 11.4.0
+[30.186s] -- The CXX compiler identification is GNU 11.4.0
+[30.194s] -- Detecting C compiler ABI info
+[30.278s] -- Detecting C compiler ABI info - done
+[30.284s] -- Check for working C compiler: /usr/bin/cc - skipped
+[30.284s] -- Detecting C compile features
+[30.284s] -- Detecting C compile features - done
+[30.288s] -- Detecting CXX compiler ABI info
+[30.400s] -- Detecting CXX compiler ABI info - done
+[30.406s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[30.406s] -- Detecting CXX compile features
+[30.407s] -- Detecting CXX compile features - done
+[30.541s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[30.582s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[30.592s] -- Ament CMake detected.
+[30.636s] -- Configuring done
+[30.638s] -- Generating done
+[30.639s] -- Build files have been written to: /home/sw/manual_total _ws/build/myactuator_rmd
+[30.641s] Invoked command in '/home/sw/manual_total _ws/build/myactuator_rmd' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sw/manual_total _ws/install/dynamixel_hardware_interface_example:/opt/ros/humble /usr/bin/cmake /home/sw/manual_total _ws/rmd/src/myactuator_rmd -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sw/manual_total _ws/install/myactuator_rmd
+[30.643s] Invoking command in '/home/sw/manual_total _ws/build/myactuator_rmd': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sw/manual_total _ws/install/dynamixel_hardware_interface_example:/opt/ros/humble /usr/bin/cmake --build /home/sw/manual_total _ws/build/myactuator_rmd -- -j24 -l24
+[30.718s] [ 33%] Building CXX object CMakeFiles/myactuator_rmd.dir/src/can/utilities.cpp.o
+[30.718s] [ 33%] Building CXX object CMakeFiles/myactuator_rmd.dir/src/protocol/requests.cpp.o
+[30.718s] [ 50%] Building CXX object CMakeFiles/myactuator_rmd.dir/src/actuator_interface.cpp.o
+[30.719s] [ 66%] Building CXX object CMakeFiles/myactuator_rmd.dir/src/can/node.cpp.o
+[30.720s] [ 83%] Building CXX object CMakeFiles/myactuator_rmd.dir/src/protocol/responses.cpp.o
+[31.012s] [100%] Linking CXX shared library libmyactuator_rmd.so
+[31.063s] [100%] Built target myactuator_rmd
+[31.071s] Invoked command in '/home/sw/manual_total _ws/build/myactuator_rmd' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sw/manual_total _ws/install/dynamixel_hardware_interface_example:/opt/ros/humble /usr/bin/cmake --build /home/sw/manual_total _ws/build/myactuator_rmd -- -j24 -l24
+[31.077s] Invoking command in '/home/sw/manual_total _ws/build/myactuator_rmd': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sw/manual_total _ws/install/dynamixel_hardware_interface_example:/opt/ros/humble /usr/bin/cmake --install /home/sw/manual_total _ws/build/myactuator_rmd
+[31.084s] -- Install configuration: ""
+[31.084s] -- Execute custom install script
+[31.085s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_constants.hpp
+[31.096s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_interface.hpp
+[31.108s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/acceleration_type.hpp
+[31.121s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/can_baud_rate.hpp
+[31.139s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/control_mode.hpp
+[31.151s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/error_code.hpp
+[31.163s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/feedback.hpp
+[31.176s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/gains.hpp
+[31.189s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/motor_status_1.hpp
+[31.204s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/motor_status_2.hpp
+[31.222s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/actuator_state/motor_status_3.hpp
+[31.239s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/can/exceptions.hpp
+[31.257s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/can/frame.hpp
+[31.272s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/can/node.hpp
+[31.284s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/can/utilities.hpp
+[31.298s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/driver/can_address_offset.hpp
+[31.314s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/driver/can_driver.hpp
+[31.331s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/driver/can_node.hpp
+[31.350s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/driver/driver.hpp
+[31.365s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/exceptions.hpp
+[31.380s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/io.hpp
+[31.396s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/myactuator_rmd.hpp
+[31.411s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/protocol/command_type.hpp
+[31.423s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/protocol/message.hpp
+[31.434s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/protocol/requests.hpp
+[31.446s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/protocol/responses.hpp
+[31.463s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/protocol/single_motor_message.hpp
+[31.478s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/include//myactuator_rmd/version.hpp
+[31.495s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/environment/library_path.sh
+[31.509s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/environment/library_path.dsv
+[31.521s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/ament_index/resource_index/package_run_dependencies/myactuator_rmd
+[31.533s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/ament_index/resource_index/parent_prefix_path/myactuator_rmd
+[31.539s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/environment/ament_prefix_path.sh
+[31.546s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/environment/ament_prefix_path.dsv
+[31.553s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/environment/path.sh
+[31.558s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/environment/path.dsv
+[31.564s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/local_setup.bash
+[31.569s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/local_setup.sh
+[31.576s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/local_setup.zsh
+[31.583s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/local_setup.dsv
+[31.590s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/package.dsv
+[31.599s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/ament_index/resource_index/packages/myactuator_rmd
+[31.609s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/cmake/ament_cmake_export_targets-extras.cmake
+[31.625s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/cmake/myactuator_rmdConfig.cmake
+[31.638s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/cmake/myactuator_rmdConfig-version.cmake
+[31.652s] -- Symlinking: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/package.xml
+[31.670s] -- Installing: /home/sw/manual_total _ws/install/myactuator_rmd/lib/libmyactuator_rmd.so
+[31.670s] -- Installing: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/cmake/myactuator_rmdTargetsExport.cmake
+[31.670s] -- Installing: /home/sw/manual_total _ws/install/myactuator_rmd/share/myactuator_rmd/cmake/myactuator_rmdTargetsExport-noconfig.cmake
+[31.674s] Invoked command in '/home/sw/manual_total _ws/build/myactuator_rmd' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sw/manual_total _ws/install/dynamixel_hardware_interface_example:/opt/ros/humble /usr/bin/cmake --install /home/sw/manual_total _ws/build/myactuator_rmd

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- 이 파일은 gripper_joint/base_yaw_joint와 base_link/link1/link2로 구성된 최소 URDF 구조를 정의한다. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dynamixel_system">
+  <xacro:arg name="prefix" default="" />
+  <!-- 수정: 기본 하드웨어 설정을 요청한 단일 TTL 버스 구성에 맞춤. -->
+  <xacro:arg name="baud_rate" default="1000000" />
+  <xacro:arg name="port_name" default="/dev/ttyUSB0" />
+  <xacro:include filename="dynamixel_system.ros2_control.xacro" />
+
+  <xacro:dynamixel_system_ros2_control name="dynamixel_system" port_name="$(arg port_name)" baud_rate="$(arg baud_rate)"/>
+
+  <link name="$(arg prefix)base_link"/>
+
+  <!-- 수정: 기존 단일 조인트 예제를 최소 2조인트 체인으로 확장. -->
+  <joint name="$(arg prefix)gripper_joint" type="revolute">
+    <parent link="$(arg prefix)base_link"/>
+    <child link="$(arg prefix)link1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0" />
+    <!-- 리밋: MX-106T 0~359도에서 양끝 10도 여유 -> 10~349도, ROS 중심각 기준 -170~169도. -->
+    <limit velocity="4.8" effort="1" lower="${-170.0*pi/180.0}" upper="${169.0*pi/180.0}" />
+  </joint>
+  <link name="$(arg prefix)link1"/>
+
+  <joint name="$(arg prefix)base_yaw_joint" type="revolute">
+    <parent link="$(arg prefix)link1"/>
+    <child link="$(arg prefix)link2"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="1 0 0" />
+    <!-- 리밋: XH540-W270-T 90~270도에서 양끝 10도 여유 -> 100~260도, ROS 중심각 기준 -80~80도. -->
+    <limit velocity="4.8" effort="1" lower="${-80.0*pi/180.0}" upper="${80.0*pi/180.0}" />
+  </joint>
+  <link name="$(arg prefix)link2"/>
+</robot>

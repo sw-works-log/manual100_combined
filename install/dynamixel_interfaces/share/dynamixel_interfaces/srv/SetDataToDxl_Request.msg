@@ -1,0 +1,1 @@
+/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_cmake/srv/SetDataToDxl_Request.msg

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- 이 파일은 단일 U2D2 TTL 버스의 MX/XH 다이나믹셀 2개를 ros2_control 하드웨어로 정의한다. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="dynamixel_system_ros2_control" params="name port_name baud_rate">
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <plugin>dynamixel_hardware_interface/DynamixelHardware</plugin>
+        <param name="port_name">${port_name}</param>
+        <param name="baud_rate">${baud_rate}</param>
+        <param name="dynamixel_model_folder">/param/dxl_model</param>
+        <!-- 수정: 하나의 U2D2/TTL 버스에 두 개의 다이나믹셀 transmission을 사용. -->
+        <param name="number_of_joints">2</param>
+        <param name="number_of_transmissions">2</param>
+        <param name="disable_torque_at_init">true</param>
+        <param name="error_timeout_ms">1000</param>
+        <param name="transmission_to_joint_matrix">1,0,0,1</param>
+        <param name="joint_to_transmission_matrix">1,0,0,1</param>
+        <param name="dynamixel_state_pub_msg_name">dynamixel_hardware_interface/dxl_state</param>
+        <param name="get_dynamixel_data_srv_name">dynamixel_hardware_interface/get_dxl_data</param>
+        <param name="set_dynamixel_data_srv_name">dynamixel_hardware_interface/set_dxl_data</param>
+        <param name="reboot_dxl_srv_name">dynamixel_hardware_interface/reboot_dxl</param>
+        <param name="set_dxl_torque_srv_name">dynamixel_hardware_interface/set_dxl_torque</param>
+      </hardware>
+
+      <joint name="gripper_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="base_yaw_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <!-- 수정: MX-106T는 같은 /dev/ttyUSB0 버스에서 ID 4를 사용. -->
+      <gpio name="dxl1">
+        <param name="type">dxl</param>
+        <param name="ID">4</param>
+        <command_interface name="Goal Position"/>
+        <state_interface name="Present Position"/>
+        <state_interface name="Present Velocity"/>
+        <state_interface name="Present Current"/>
+        <param name="Return Delay Time">0</param>
+      </gpio>
+
+      <!-- 수정: XH540-W270-T는 같은 /dev/ttyUSB0 버스에서 ID 0을 사용. -->
+      <gpio name="dxl2">
+        <param name="type">dxl</param>
+        <param name="ID">0</param>
+        <command_interface name="Goal Position"/>
+        <state_interface name="Present Position"/>
+        <state_interface name="Present Velocity"/>
+        <state_interface name="Present Current"/>
+        <param name="Return Delay Time">0</param>
+      </gpio>
+    </ros2_control>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,30 @@
+[0.005s] Invoking command in '/home/sw/SDK-240913/myactuator_rmd-main/build/myactuator_rmd': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sw/SDK-240913/myactuator_rmd-main -D PYTHON_BINDINGS=on -D BUILD_TESTING=on -DCMAKE_INSTALL_PREFIX=/home/sw/SDK-240913/myactuator_rmd-main/install/myactuator_rmd
+[0.057s] -- The C compiler identification is GNU 11.4.0
+[0.114s] -- The CXX compiler identification is GNU 11.4.0
+[0.125s] -- Detecting C compiler ABI info
+[0.207s] -- Detecting C compiler ABI info - done
+[0.216s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.216s] -- Detecting C compile features
+[0.217s] -- Detecting C compile features - done
+[0.220s] -- Detecting CXX compiler ABI info
+[0.288s] -- Detecting CXX compiler ABI info - done
+[0.295s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.295s] -- Detecting CXX compile features
+[0.296s] -- Detecting CXX compile features - done
+[0.417s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.470s] -- Ament CMake detected.
+[0.709s] -- Found Python: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter Development Development.Module Development.Embed 
+[0.746s] -- Performing Test HAS_FLTO
+[0.862s] -- Performing Test HAS_FLTO - Success
+[0.863s] -- Found pybind11: /usr/include (found version "2.9.1")
+[1.090s] -- Found GTest: /usr/lib/x86_64-linux-gnu/cmake/GTest/GTestConfig.cmake (found version "1.11.0")  
+[1.131s] -- Configuring done
+[1.132s] [31mCMake Error at CMakeLists.txt:85 (add_executable):
+[1.132s]   Target "run_tests" links to target "GTest::gmock" but the target was not
+[1.132s]   found.  Perhaps a find_package() call is missing for an IMPORTED target, or
+[1.132s]   an ALIAS target is missing?
+[1.132s] 
+[1.132s] [0m
+[1.137s] -- Generating done
+[1.137s] [0mCMake Generate step failed.  Build files cannot be regenerated correctly.[0m
+[1.142s] Invoked command in '/home/sw/SDK-240913/myactuator_rmd-main/build/myactuator_rmd' returned '1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sw/SDK-240913/myactuator_rmd-main -D PYTHON_BINDINGS=on -D BUILD_TESTING=on -DCMAKE_INSTALL_PREFIX=/home/sw/SDK-240913/myactuator_rmd-main/install/myactuator_rmd

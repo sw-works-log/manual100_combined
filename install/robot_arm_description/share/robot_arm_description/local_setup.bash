@@ -1,0 +1,1 @@
+/home/sw/manual_total _ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.bash
