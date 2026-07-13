@@ -1,1 +1,0 @@
-/home/sw/manual_total _ws/dxl/src/dynamixel_hardware_interface_demos/dynamixel_hardware_interface_example/launch/generate_xacros.launch.py

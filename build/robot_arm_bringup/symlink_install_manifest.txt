@@ -1,7 +1,3 @@
-/home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/__pycache__/manual_total_control.launch.cpython-310.pyc
-/home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/__pycache__/robot_arm_bringup.launch.cpython-310.pyc
-/home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/__pycache__/robot_arm_rmd_control.launch.cpython-310.pyc
-/home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/__pycache__/test_rmd_only.launch.cpython-310.pyc
 /home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/manual_total_control.launch.py
 /home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/robot_arm_bringup.launch.py
 /home/sw/manual_total _ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/robot_arm_rmd_control.launch.py
