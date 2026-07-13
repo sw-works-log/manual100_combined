@@ -1,6 +1,5 @@
 /home/sw/manual_total _ws/install/robot_arm_description/share/robot_arm_description/config/manual_total_controllers.yaml
 /home/sw/manual_total _ws/install/robot_arm_description/share/robot_arm_description/config/robot_arm_rmd_controllers.yaml
-/home/sw/manual_total _ws/install/robot_arm_description/share/robot_arm_description/launch/__pycache__/robot_arm.launch.cpython-310.pyc
 /home/sw/manual_total _ws/install/robot_arm_description/share/robot_arm_description/launch/robot_arm.launch.py
 /home/sw/manual_total _ws/install/robot_arm_description/share/robot_arm_description/urdf/manual_total_robot.urdf.xacro
 /home/sw/manual_total _ws/install/robot_arm_description/share/robot_arm_description/urdf/test_urdf.urdf.xacro
