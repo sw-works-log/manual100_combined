@@ -19,7 +19,7 @@ def generate_launch_description():
         DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
         DeclareLaunchArgument('joy_dev', default_value='/dev/input/js0'),
         DeclareLaunchArgument('control_toggle_button', default_value='9'),
-        DeclareLaunchArgument('manual_mode_button', default_value='7'),
+        DeclareLaunchArgument('manual_mode_button', default_value='13'),
         DeclareLaunchArgument('emergency_stop_button', default_value='10'),
         DeclareLaunchArgument(
             'rmd_hardware_components',
@@ -56,8 +56,7 @@ def generate_launch_description():
              name='safety_manager', output='screen', parameters=[{
                  'control_toggle_button': LaunchConfiguration('control_toggle_button'),
                  'manual_mode_button': LaunchConfiguration('manual_mode_button'),
-                 'emergency_stop_button': LaunchConfiguration('emergency_stop_button'),
-                 'rmd_hardware_components': LaunchConfiguration('rmd_hardware_components')}]),
+                 'emergency_stop_button': LaunchConfiguration('emergency_stop_button')}]),
         Node(package='robot_arm_bringup', executable='gamepad_position_controller.py',
              name='gamepad_position_controller', output='screen'),
         Node(package='robot_arm_bringup', executable='semiauto_placeholder.py',
