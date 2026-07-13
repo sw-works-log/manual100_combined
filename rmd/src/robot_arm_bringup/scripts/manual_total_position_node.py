@@ -29,6 +29,7 @@ class ManualTotalPositionNode(Node):
         self.declare_parameter('base_yaw_positive_button', 2)
         self.declare_parameter('base_yaw_negative_button', 0)
         self.declare_parameter('joy_timeout', 0.5)
+        self.declare_parameter('protective_stop_deceleration_time', 0.5)    #0.5초간 선형 감소 (1초 동안 감속을 원하면 이거 값 0.5->1로 변경)
 
         self.rates = list(map(float, self.get_parameter('rates').value))
         self.lower = list(map(float, self.get_parameter('lower_limits').value))
@@ -42,10 +43,17 @@ class ManualTotalPositionNode(Node):
                                ('gripper_positive_button', 'gripper_negative_button',
                                 'base_yaw_positive_button', 'base_yaw_negative_button')]
         self.joy_timeout = float(self.get_parameter('joy_timeout').value)
+        self.protective_stop_deceleration_time = max(
+            float(self.get_parameter('protective_stop_deceleration_time').value), 0.0)
         self.positions: Dict[str, float] = {}
+        self.velocities: Dict[str, float] = {}
         self.target: Optional[list] = None
         self.joy: Optional[Joy] = None
         self.manual_enabled = False
+        self.protective_stop = False
+        self.protective_stop_reported = False
+        self.protective_stop_start = None
+        self.protective_stop_initial_velocity = [0.0] * len(self.JOINTS)
         self.last_joy_time = self.get_clock().now()
         self.last_time = self.get_clock().now()
         self.publisher = self.create_publisher(Float64MultiArray, self.get_parameter('command_topic').value, 10)
@@ -56,10 +64,13 @@ class ManualTotalPositionNode(Node):
             durability=DurabilityPolicy.TRANSIENT_LOCAL)
         self.create_subscription(
             Bool, '/control/manual_enabled', self.on_manual_enabled, mode_qos)
+        self.create_subscription(
+            Bool, '/control/protective_stop', self.on_protective_stop, mode_qos)
         self.create_timer(1.0 / float(self.get_parameter('publish_rate').value), self.on_timer)
 
     def on_state(self, msg):
         self.positions.update(zip(msg.name, msg.position))
+        self.velocities.update(zip(msg.name, msg.velocity))
         if self.target is None and all(j in self.positions for j in self.JOINTS):
             self.target = [min(max(self.positions[j], self.lower[i]), self.upper[i]) for i, j in enumerate(self.JOINTS)]
             self.get_logger().info('All joint targets initialized from /joint_states; manual commands are now safe to publish.')
@@ -79,6 +90,23 @@ class ManualTotalPositionNode(Node):
             self.get_logger().info('MANUAL mode disabled; command publishing stopped.')
         self.manual_enabled = enabled
 
+    def on_protective_stop(self, msg):
+        if not msg.data or self.protective_stop:
+            return
+        self.protective_stop = True
+        self.protective_stop_reported = False
+        self.protective_stop_start = self.get_clock().now()
+        # Begin the stop trajectory at measured position. Shoulder, elbow, and
+        # base-yaw retain their measured velocity and ramp it linearly to zero;
+        # the gripper immediately holds its measured position.
+        if all(j in self.positions for j in self.JOINTS):
+            self.target = [self.positions[j] for j in self.JOINTS]
+        self.protective_stop_initial_velocity = [
+            0.0 if joint == 'gripper_joint' else self.velocities.get(joint, 0.0)
+            for joint in self.JOINTS]
+        self.get_logger().fatal(
+            'Protective E-stop received: operator commands blocked; holding position with torque enabled.')
+
     def axis(self, index):
         if self.joy is None or index < 0 or index >= len(self.joy.axes):
             return 0.0
@@ -92,7 +120,28 @@ class ManualTotalPositionNode(Node):
         now = self.get_clock().now()
         dt = min(max((now - self.last_time).nanoseconds * 1e-9, 0.0), 0.1)
         self.last_time = now
-        if not self.manual_enabled or self.target is None:
+        if self.target is None:
+            return
+        if self.protective_stop:
+            elapsed = (now - self.protective_stop_start).nanoseconds * 1e-9
+            if self.protective_stop_deceleration_time > 0.0:
+                scale = max(1.0 - elapsed / self.protective_stop_deceleration_time, 0.0)
+            else:
+                scale = 0.0
+            for i, initial_velocity in enumerate(self.protective_stop_initial_velocity):
+                self.target[i] = min(max(
+                    self.target[i] + initial_velocity * scale * dt,
+                    self.lower[i]), self.upper[i])
+            self.publisher.publish(Float64MultiArray(data=self.target))
+            if (not self.protective_stop_reported
+                    and scale == 0.0
+                    and all(j in self.velocities for j in self.JOINTS)
+                    and max(abs(self.velocities[j]) for j in self.JOINTS) <= 0.02):
+                self.protective_stop_reported = True
+                self.get_logger().fatal(
+                    'Protective E-stop settled: all measured joint velocities are <= 0.02 rad/s.')
+            return
+        if not self.manual_enabled:
             return
         directions = [0.0] * 4
         joy_fresh = (now - self.last_joy_time).nanoseconds * 1e-9 <= self.joy_timeout

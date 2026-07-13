@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Operator mode selection and latched software E-stop for the robot arm."""
+"""Operator mode selection and latched controlled protective stop."""
 
-from controller_manager_msgs.srv import SetHardwareComponentState, SwitchController
-from lifecycle_msgs.msg import State
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy
 from sensor_msgs.msg import Joy
 from std_msgs.msg import Bool, String
-from std_srvs.srv import SetBool
 
 
 class SafetyManager(Node):
@@ -20,21 +17,15 @@ class SafetyManager(Node):
     def __init__(self):
         super().__init__('safety_manager')
         self.declare_parameter('control_toggle_button', 9)
-        self.declare_parameter('manual_mode_button', 7)
+        # Right D-pad button in the currently verified PlayStation /joy mapping.
+        self.declare_parameter('manual_mode_button', 13)
         self.declare_parameter('emergency_stop_button', 10)
-        self.declare_parameter('rmd_hardware_components', ['shoulder_rmd', 'elbow_rmd'])
         self.control_button = int(self.get_parameter('control_toggle_button').value)
         self.manual_button = int(self.get_parameter('manual_mode_button').value)
         self.estop_button = int(self.get_parameter('emergency_stop_button').value)
-        self.rmd_components = list(self.get_parameter('rmd_hardware_components').value)
 
         self.mode = self.OFF
         self.last_buttons = []
-        self.estop_controller_future = None
-        self.estop_dxl_future = None
-        self.rmd_stop_futures = []
-        self.estop_trigger_time = None
-        self.completion_reported = False
 
         latched_qos = QoSProfile(
             depth=1, reliability=ReliabilityPolicy.RELIABLE,
@@ -43,16 +34,12 @@ class SafetyManager(Node):
         self.control_enabled_pub = self.create_publisher(Bool, '/control/enabled', latched_qos)
         self.manual_enabled_pub = self.create_publisher(Bool, '/control/manual_enabled', latched_qos)
         self.semiauto_enabled_pub = self.create_publisher(Bool, '/control/semiauto_enabled', latched_qos)
+        self.protective_stop_pub = self.create_publisher(
+            Bool, '/control/protective_stop', latched_qos)
         self.estop_pub = self.create_publisher(Bool, '/emergency_stop', latched_qos)
-        self.switch_controller_client = self.create_client(
-            SwitchController, '/controller_manager/switch_controller')
-        self.set_hardware_state_client = self.create_client(
-            SetHardwareComponentState, '/controller_manager/set_hardware_component_state')
-        self.dxl_torque_client = self.create_client(
-            SetBool, '/dynamixel_hardware_interface/set_dxl_torque')
         self.create_subscription(Joy, '/joy', self.on_joy, 10)
-        self.create_timer(0.05, self.on_timer)
         self.estop_pub.publish(Bool(data=False))
+        self.protective_stop_pub.publish(Bool(data=False))
         self.publish_mode()
 
     def pressed(self, msg, index):
@@ -83,44 +70,12 @@ class SafetyManager(Node):
 
     def trigger_estop(self):
         self.mode = self.ESTOP_LATCHED
-        self.estop_trigger_time = self.get_clock().now()
         self.publish_mode()
+        self.protective_stop_pub.publish(Bool(data=True))
         self.estop_pub.publish(Bool(data=True))
         self.get_logger().fatal(
-            'EMERGENCY STOP LATCHED: stopping controller and disabling DXL/RMD torque. '
-            'Restart bringup to recover.')
-
-    def on_timer(self):
-        if self.mode != self.ESTOP_LATCHED:
-            return
-        if self.estop_controller_future is None and self.switch_controller_client.service_is_ready():
-            request = SwitchController.Request()
-            request.deactivate_controllers = ['position_controller']
-            request.strictness = SwitchController.Request.BEST_EFFORT
-            request.activate_asap = True
-            request.timeout.sec = 1
-            self.estop_controller_future = self.switch_controller_client.call_async(request)
-        if self.estop_dxl_future is None and self.dxl_torque_client.service_is_ready():
-            self.estop_dxl_future = self.dxl_torque_client.call_async(SetBool.Request(data=False))
-
-        controller_done = self.estop_controller_future is not None and self.estop_controller_future.done()
-        elapsed = (self.get_clock().now() - self.estop_trigger_time).nanoseconds * 1e-9
-        if (not self.rmd_stop_futures and self.set_hardware_state_client.service_is_ready()
-                and (controller_done or elapsed >= 1.0)):
-            target = State(id=State.PRIMARY_STATE_UNCONFIGURED, label='unconfigured')
-            for component in self.rmd_components:
-                request = SetHardwareComponentState.Request(name=component, target_state=target)
-                self.rmd_stop_futures.append(
-                    (component, self.set_hardware_state_client.call_async(request)))
-
-        if (self.rmd_stop_futures and not self.completion_reported
-                and all(future.done() for _, future in self.rmd_stop_futures)):
-            for component, future in self.rmd_stop_futures:
-                result = future.result()
-                if result is None or result.state.id != State.PRIMARY_STATE_UNCONFIGURED:
-                    self.get_logger().error(f'Failed to shut down {component}.')
-            self.completion_reported = True
-            self.get_logger().fatal('Emergency shutdown requests completed; restart is required.')
+            'PROTECTIVE E-STOP LATCHED: blocking operator commands and holding position '
+            'with motor torque enabled. Restart bringup to recover.')
 
 
 def main(args=None):
