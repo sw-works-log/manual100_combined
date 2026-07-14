@@ -1,1 +1,1 @@
-/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_generator_py/dynamixel_interfaces/__init__.py
+/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_generator_py/dynamixel_interfaces/__init__.py

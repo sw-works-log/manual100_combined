@@ -1,1 +1,1 @@
-/home/sw/manual_total _ws/build/dynamixel_interfaces/ament_cmake_environment_hooks/local_setup.bash
+/home/sw/manual_total_ws/build/dynamixel_interfaces/ament_cmake_environment_hooks/local_setup.bash

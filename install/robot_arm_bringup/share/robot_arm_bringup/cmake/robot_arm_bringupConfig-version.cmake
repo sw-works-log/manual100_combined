@@ -1,1 +1,1 @@
-/home/sw/manual_total _ws/build/robot_arm_bringup/ament_cmake_core/robot_arm_bringupConfig-version.cmake
+/home/sw/manual_total_ws/build/robot_arm_bringup/ament_cmake_core/robot_arm_bringupConfig-version.cmake

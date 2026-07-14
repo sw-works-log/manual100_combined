@@ -14,6 +14,8 @@ position_controller:
       # wrist 하드웨어 세팅 전까지 비활성화합니다.
       # 활성화 시 manual_total_position_node.py의 JOINTS/rates/limits에도 같은 위치로 추가합니다.
       # - wrist_joint
-      - gripper_joint
-      - base_yaw_joint
+      # RMD CAN ID 4, 5 단독 테스트 중에는 Dynamixel 관절을 비활성화합니다.
+      # Dynamixel 하드웨어 블록을 복구할 때 아래 두 관절도 함께 활성화합니다.
+      # - gripper_joint
+      # - base_yaw_joint
     interface_name: position

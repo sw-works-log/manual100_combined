@@ -2,6 +2,7 @@
 
 #include <atomic>
 #include <chrono>
+#include <cmath>
 #include <fstream>
 #include <limits>
 #include <memory>
@@ -161,13 +162,21 @@ namespace myactuator_rmd_hardware {
       return CallbackReturn::ERROR;
     }
 
-    position_state_ = 0.0;
+    position_state_ = std::numeric_limits<double>::quiet_NaN();
     velocity_state_ = 0.0;
     effort_state_ = 0.0;
-    position_command_ = 0.0;
+    position_command_ = std::numeric_limits<double>::quiet_NaN();
     velocity_command_ = 0.0;
     effort_command_ = 0.0;
 
+    async_position_state_.store(std::numeric_limits<double>::quiet_NaN());
+    async_velocity_state_.store(0.0);
+    async_effort_state_.store(0.0);
+    async_position_command_.store(std::numeric_limits<double>::quiet_NaN());
+    async_velocity_command_.store(0.0);
+    async_effort_command_.store(0.0);
+    position_state_valid_.store(false);
+    position_command_valid_.store(false);
     position_interface_running_.store(false);
     velocity_interface_running_.store(false);
     effort_interface_running_.store(false);
@@ -313,8 +322,25 @@ namespace myactuator_rmd_hardware {
 
     for (auto const& start_interface: start_interfaces) {
       if (start_interface == info_.joints.at(0).name + "/" + hardware_interface::HW_IF_POSITION) {
+        if (!position_state_valid_.load()) {
+          RCLCPP_ERROR(getLogger(),
+            "Refusing to start position interface: no valid motor position has been received yet.");
+          return hardware_interface::return_type::ERROR;
+        }
+        double const measured_position {async_position_state_.load()};
+        if (!std::isfinite(measured_position)) {
+          RCLCPP_ERROR(getLogger(),
+            "Refusing to start position interface: measured motor position is not finite.");
+          return hardware_interface::return_type::ERROR;
+        }
+        // Start by holding the measured position, never the default value zero.
+        // Publish both buffers before exposing the running flag to the async thread.
+        position_command_ = measured_position;
+        async_position_command_.store(measured_position);
+        position_command_valid_.store(true);
         position_interface_running_.store(true);
-        RCLCPP_INFO(getLogger(), "Starting position interface...");
+        RCLCPP_INFO(getLogger(),
+          "Starting position interface at measured position %.6f rad.", measured_position);
       } else if (start_interface == info_.joints.at(0).name + "/" + hardware_interface::HW_IF_VELOCITY) {
         velocity_interface_running_.store(true);
         RCLCPP_INFO(getLogger(), "Starting velocity interface...");
@@ -339,7 +365,12 @@ namespace myactuator_rmd_hardware {
     rclcpp::Duration const& /*period*/) {
     // TODO: Make sure that all commands are finite
     if (position_interface_running_) {
-      async_position_command_.store(position_command_);
+      if (std::isfinite(position_command_)) {
+        async_position_command_.store(position_command_);
+        position_command_valid_.store(true);
+      } else {
+        RCLCPP_ERROR(getLogger(), "Ignoring non-finite position command.");
+      }
     } else if (velocity_interface_running_) {
       async_velocity_command_.store(velocity_command_);
     } else if (effort_interface_running_) {
@@ -357,8 +388,15 @@ namespace myactuator_rmd_hardware {
     while (!stop_async_thread_) {
       auto const now {std::chrono::steady_clock::now()};
       auto const wakeup_time {now + cycle_time};
-      if (position_interface_running_) {
-        feedback_ = actuator_interface_->sendPositionAbsoluteSetpoint(radToDeg(async_position_command_.load()), max_velocity_);
+      if (position_interface_running_ && position_command_valid_.load()) {
+        double const command {async_position_command_.load()};
+        if (std::isfinite(command)) {
+          feedback_ = actuator_interface_->sendPositionAbsoluteSetpoint(radToDeg(command), max_velocity_);
+        } else {
+          position_command_valid_.store(false);
+          RCLCPP_ERROR(getLogger(), "Blocked non-finite asynchronous position command.");
+          feedback_ = actuator_interface_->getMotorStatus2();
+        }
       } else if (velocity_interface_running_) {
         feedback_ = actuator_interface_->sendVelocitySetpoint(radToDeg(async_velocity_command_.load()));
       } else if (effort_interface_running_) {
@@ -376,7 +414,14 @@ namespace myactuator_rmd_hardware {
       if (effort_low_pass_filter_) {
         current_state = effort_low_pass_filter_->apply(current_state);
       }
-      async_position_state_.store(degToRad(position_state));
+      double const position_state_rad {degToRad(position_state)};
+      if (std::isfinite(position_state_rad)) {
+        async_position_state_.store(position_state_rad);
+        position_state_valid_.store(true);
+      } else {
+        RCLCPP_ERROR(getLogger(),
+          "Received non-finite motor position; keeping the last valid state.");
+      }
       async_velocity_state_.store(degToRad(velocity_state));
       async_effort_state_.store(currentToTorque(current_state, torque_constant_));
 

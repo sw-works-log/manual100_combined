@@ -138,25 +138,6 @@ def generate_launch_description():
         parameters=[{'dev': joy_dev}],
         condition=IfCondition(launch_joy)
     )
-    manual_control_node = Node(
-        package='robot_arm_bringup',
-        executable='manual_3axis_position_node.py',
-        name='manual_3axis_position_node',
-        output='screen',
-        parameters=[
-            {
-                'joints': ['shoulder_joint', 'elbow_joint'],
-                'command_topic': '/position_controller/commands',
-                'mode_toggle_button': 9,                    #options 버튼
-                'dpad_x_axis': 3,                           #우측 방향 패드 (좌측은 1,2)
-                'dpad_y_axis': 4,
-                'target_step_per_second': [0.25, 0.25],
-                'lower_limits': [-3.14159, -3.14159],
-                'upper_limits': [3.14159, 3.14159],
-            }
-        ]
-    )
-
     ld = LaunchDescription()
     ld.add_action(shoulder_actuator_id_cmd)
     ld.add_action(elbow_actuator_id_cmd)
@@ -172,5 +153,4 @@ def generate_launch_description():
     ld.add_action(joint_state_broadcaster_spawner_node)
     ld.add_action(controller_spawner_sequence)
     ld.add_action(joy_node)
-    ld.add_action(manual_control_node)
     return ld

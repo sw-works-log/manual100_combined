@@ -1,12 +1,12 @@
 {
   "package_name": "dynamixel_interfaces",
-  "output_dir": "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_generator_c/dynamixel_interfaces",
+  "output_dir": "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_generator_c/dynamixel_interfaces",
   "template_dir": "/opt/ros/humble/share/rosidl_generator_c/cmake/../resource",
   "idl_tuples": [
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:msg/DynamixelState.idl",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:srv/GetDataFromDxl.idl",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:srv/SetDataToDxl.idl",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:srv/RebootDxl.idl"
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:msg/DynamixelState.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:srv/GetDataFromDxl.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:srv/SetDataToDxl.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces:srv/RebootDxl.idl"
   ],
   "ros_interface_dependencies": [
     "std_msgs:/opt/ros/humble/share/std_msgs/msg/Bool.idl",
@@ -88,10 +88,10 @@
     "/opt/ros/humble/share/rosidl_generator_c/cmake/../resource/msg__struct.h.em",
     "/opt/ros/humble/share/rosidl_generator_c/cmake/../resource/msg__type_support.h.em",
     "/opt/ros/humble/share/rosidl_generator_c/cmake/../resource/srv__type_support.h.em",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/msg/DynamixelState.idl",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/srv/GetDataFromDxl.idl",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/srv/SetDataToDxl.idl",
-    "/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/srv/RebootDxl.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/msg/DynamixelState.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/srv/GetDataFromDxl.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/srv/SetDataToDxl.idl",
+    "/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_adapter/dynamixel_interfaces/srv/RebootDxl.idl",
     "/opt/ros/humble/share/std_msgs/msg/Bool.idl",
     "/opt/ros/humble/share/std_msgs/msg/Byte.idl",
     "/opt/ros/humble/share/std_msgs/msg/ByteMultiArray.idl",

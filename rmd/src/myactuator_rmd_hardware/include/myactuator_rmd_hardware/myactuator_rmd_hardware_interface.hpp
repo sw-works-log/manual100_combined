@@ -297,6 +297,10 @@ namespace myactuator_rmd_hardware {
       std::atomic<double> async_position_command_;
       std::atomic<double> async_velocity_command_;
       std::atomic<double> async_effort_command_;
+      // Never send a position command before a finite motor position has been
+      // read and copied into the command buffer.
+      std::atomic<bool> position_state_valid_;
+      std::atomic<bool> position_command_valid_;
       std::atomic<bool> position_interface_running_;
       std::atomic<bool> velocity_interface_running_;
       std::atomic<bool> effort_interface_running_;

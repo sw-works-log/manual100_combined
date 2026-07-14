@@ -13,13 +13,15 @@ def generate_launch_description():
         DeclareLaunchArgument('shoulder_actuator_id', default_value='4'),
         DeclareLaunchArgument('elbow_actuator_id', default_value='5'),
         DeclareLaunchArgument('wrist_actuator_id', default_value='6'),
-        DeclareLaunchArgument('max_velocity', default_value='30.0'),
+        # Conservative bringup limit in degrees per second.
+        DeclareLaunchArgument('max_velocity', default_value='5.0'),
         DeclareLaunchArgument('timeout', default_value='0'),
-        DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
-        DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
+        # RMD CAN ID 4, 5 단독 테스트 중에는 Dynamixel 인자를 비활성화합니다.
+        # DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
+        # DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
         DeclareLaunchArgument('joy_dev', default_value='/dev/input/js0'),
         DeclareLaunchArgument('control_toggle_button', default_value='9'),
-        DeclareLaunchArgument('manual_mode_button', default_value='13'),
+        DeclareLaunchArgument('manual_mode_button', default_value='5'),
         DeclareLaunchArgument('emergency_stop_button', default_value='10'),
         DeclareLaunchArgument(
             'rmd_hardware_components',
@@ -34,9 +36,7 @@ def generate_launch_description():
                      ' elbow_actuator_id:=', LaunchConfiguration('elbow_actuator_id'),
                      ' wrist_actuator_id:=', LaunchConfiguration('wrist_actuator_id'),
                      ' max_velocity:=', LaunchConfiguration('max_velocity'),
-                     ' timeout:=', LaunchConfiguration('timeout'),
-                     ' dxl_port_name:=', LaunchConfiguration('dxl_port_name'),
-                     ' dxl_baud_rate:=', LaunchConfiguration('dxl_baud_rate')]
+                     ' timeout:=', LaunchConfiguration('timeout')]
     robot_description = {'robot_description': ParameterValue(Command(xacro_command), value_type=str)}
     control = Node(package='controller_manager', executable='ros2_control_node',
                    parameters=[controllers, robot_description], output='screen')

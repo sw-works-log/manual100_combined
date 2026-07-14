@@ -1,1 +1,1 @@
-/home/sw/manual_total _ws/build/myactuator_rmd_hardware/ament_cmake_environment_hooks/local_setup.bash
+/home/sw/manual_total_ws/build/myactuator_rmd_hardware/ament_cmake_environment_hooks/local_setup.bash

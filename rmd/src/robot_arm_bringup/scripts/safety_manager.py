@@ -17,8 +17,8 @@ class SafetyManager(Node):
     def __init__(self):
         super().__init__('safety_manager')
         self.declare_parameter('control_toggle_button', 9)
-        # Right D-pad button in the currently verified PlayStation /joy mapping.
-        self.declare_parameter('manual_mode_button', 13)
+        # R1 in the standard PlayStation /joy mapping.
+        self.declare_parameter('manual_mode_button', 5)
         self.declare_parameter('emergency_stop_button', 10)
         self.control_button = int(self.get_parameter('control_toggle_button').value)
         self.manual_button = int(self.get_parameter('manual_mode_button').value)

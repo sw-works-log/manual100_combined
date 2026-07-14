@@ -5,7 +5,8 @@
   <xacro:arg name="elbow_actuator_id" default="5"/>
   <xacro:arg name="wrist_actuator_id" default="6"/>
   <xacro:arg name="timeout" default="0"/>
-  <xacro:arg name="max_velocity" default="30.0"/>
+  <!-- Conservative bringup limit in degrees per second. -->
+  <xacro:arg name="max_velocity" default="5.0"/>
   <xacro:arg name="dxl_port_name" default="/dev/ttyUSB0"/>
   <xacro:arg name="dxl_baud_rate" default="1000000"/>
 
@@ -63,6 +64,9 @@
   <xacro:rmd_actuator name="wrist_rmd" joint_name="wrist_joint" actuator_id="$(arg wrist_actuator_id)"/>
   -->
 
+  <!-- RMD CAN ID 4, 5 단독 구동 테스트 중에는 Dynamixel을 초기화하지 않습니다.
+  다시 사용할 때 이 블록과 manual_total_controllers.yaml 및
+  manual_total_position_node.py의 gripper/base_yaw 항목을 함께 활성화해야 합니다.
   <ros2_control name="dynamixel_system" type="system">
     <hardware>
       <plugin>dynamixel_hardware_interface/DynamixelHardware</plugin>
@@ -83,4 +87,5 @@
     <gpio name="dxl1"><param name="type">dxl</param><param name="ID">4</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
     <gpio name="dxl2"><param name="type">dxl</param><param name="ID">0</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
   </ros2_control>
+  -->
 </robot>

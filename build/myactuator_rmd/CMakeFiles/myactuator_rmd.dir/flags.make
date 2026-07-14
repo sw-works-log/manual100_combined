@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Dmyactuator_rmd_EXPORTS
 
-CXX_INCLUDES = -I"/home/sw/manual_total _ws/rmd/src/myactuator_rmd/include"
+CXX_INCLUDES = -I/home/sw/manual_total_ws/rmd/src/myactuator_rmd/include
 
 CXX_FLAGS = -fPIC -std=gnu++17
 
