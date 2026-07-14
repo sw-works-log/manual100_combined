@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/rmd/src/robot_arm_bringup/scripts/manual_3axis_position_node.py
