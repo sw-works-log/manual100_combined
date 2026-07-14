@@ -318,8 +318,8 @@ message(STATUS "Execute custom install script")
 # install(DIRECTORY "launch" "DESTINATION" "share/robot_arm_bringup")
 ament_cmake_symlink_install_directory("/home/sw/manual_total_ws/rmd/src/robot_arm_bringup" DIRECTORY "launch" "DESTINATION" "share/robot_arm_bringup")
 
-# install(PROGRAMS "scripts/manual_3axis_position_node.py" "scripts/manual_total_position_node.py" "scripts/gamepad_position_controller.py" "scripts/safety_manager.py" "scripts/semiauto_placeholder.py" "DESTINATION" "lib/robot_arm_bringup")
-ament_cmake_symlink_install_programs("/home/sw/manual_total_ws/rmd/src/robot_arm_bringup" PROGRAMS "scripts/manual_3axis_position_node.py" "scripts/manual_total_position_node.py" "scripts/gamepad_position_controller.py" "scripts/safety_manager.py" "scripts/semiauto_placeholder.py" "DESTINATION" "lib/robot_arm_bringup")
+# install(PROGRAMS "scripts/manual_total_position_node.py" "scripts/gamepad_position_controller.py" "scripts/safety_manager.py" "scripts/semiauto_placeholder.py" "DESTINATION" "lib/robot_arm_bringup")
+ament_cmake_symlink_install_programs("/home/sw/manual_total_ws/rmd/src/robot_arm_bringup" PROGRAMS "scripts/manual_total_position_node.py" "scripts/gamepad_position_controller.py" "scripts/safety_manager.py" "scripts/semiauto_placeholder.py" "DESTINATION" "lib/robot_arm_bringup")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_bringup/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_arm_bringup" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_bringup" FILES "/home/sw/manual_total_ws/build/robot_arm_bringup/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_arm_bringup" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

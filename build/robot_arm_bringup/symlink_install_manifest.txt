@@ -3,7 +3,6 @@
 /home/sw/manual_total_ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/robot_arm_bringup.launch.py
 /home/sw/manual_total_ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/robot_arm_rmd_control.launch.py
 /home/sw/manual_total_ws/install/robot_arm_bringup/share/robot_arm_bringup/launch/test_rmd_only.launch.py
-/home/sw/manual_total_ws/install/robot_arm_bringup/lib/robot_arm_bringup/manual_3axis_position_node.py
 /home/sw/manual_total_ws/install/robot_arm_bringup/lib/robot_arm_bringup/manual_total_position_node.py
 /home/sw/manual_total_ws/install/robot_arm_bringup/lib/robot_arm_bringup/gamepad_position_controller.py
 /home/sw/manual_total_ws/install/robot_arm_bringup/lib/robot_arm_bringup/safety_manager.py
