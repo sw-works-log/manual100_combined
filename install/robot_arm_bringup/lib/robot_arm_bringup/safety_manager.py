@@ -1,1 +1,1 @@
-/home/sw/manual_total_ws/rmd/src/robot_arm_bringup/scripts/safety_manager.py
+/home/sw/manual_total_ws/src/robot_arm_bringup/scripts/safety_manager.py

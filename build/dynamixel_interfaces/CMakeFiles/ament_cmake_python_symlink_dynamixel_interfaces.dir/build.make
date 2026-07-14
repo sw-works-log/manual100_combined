@@ -53,7 +53,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces
+CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/src/dynamixel_interfaces
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/sw/manual_total_ws/build/dynamixel_interfaces
@@ -82,6 +82,6 @@ CMakeFiles/ament_cmake_python_symlink_dynamixel_interfaces.dir/clean:
 .PHONY : CMakeFiles/ament_cmake_python_symlink_dynamixel_interfaces.dir/clean
 
 CMakeFiles/ament_cmake_python_symlink_dynamixel_interfaces.dir/depend:
-	cd /home/sw/manual_total_ws/build/dynamixel_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces/CMakeFiles/ament_cmake_python_symlink_dynamixel_interfaces.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sw/manual_total_ws/build/dynamixel_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/src/dynamixel_interfaces /home/sw/manual_total_ws/src/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces/CMakeFiles/ament_cmake_python_symlink_dynamixel_interfaces.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ament_cmake_python_symlink_dynamixel_interfaces.dir/depend
 

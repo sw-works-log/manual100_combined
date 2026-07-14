@@ -53,7 +53,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces
+CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/src/dynamixel_interfaces
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/sw/manual_total_ws/build/dynamixel_interfaces
@@ -268,6 +268,6 @@ CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/depend: ros
 CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/dynamixel_interfaces/srv/detail/get_data_from_dxl__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/dynamixel_interfaces/srv/detail/reboot_dxl__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/dynamixel_interfaces/srv/detail/set_data_to_dxl__rosidl_typesupport_fastrtps_cpp.hpp
-	cd /home/sw/manual_total_ws/build/dynamixel_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces/CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sw/manual_total_ws/build/dynamixel_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/src/dynamixel_interfaces /home/sw/manual_total_ws/src/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces/CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_cpp.dir/depend
 

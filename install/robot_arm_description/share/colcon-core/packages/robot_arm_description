@@ -1,1 +1,1 @@
-ament_index_python:dynamixel_hardware_interface:launch:launch_ros:myactuator_rmd_hardware:robot_state_publisher:xacro
+ament_index_python:dynamixel_hardware_interface:launch:launch_ros:rmd_hardware_interface:robot_state_publisher:xacro

@@ -316,46 +316,46 @@ message(STATUS "Execute custom install script")
 # begin of custom install code
 
 # install(DIRECTORY "config" "launch" "urdf" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_directory("/home/sw/manual_total_ws/rmd/src/robot_arm_description" DIRECTORY "config" "launch" "urdf" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_directory("/home/sw/manual_total_ws/src/robot_arm_description" DIRECTORY "config" "launch" "urdf" "DESTINATION" "share/robot_arm_description")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/robot_arm_description/environment")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/robot_arm_description/environment")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/robot_arm_description/environment")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/robot_arm_description/environment")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/robot_arm_description/environment")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/robot_arm_description/environment")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/robot_arm_description/environment")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/robot_arm_description/environment")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/robot_arm_description/environment")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/robot_arm_description/environment")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/robot_arm_description/environment")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/robot_arm_description/environment")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/robot_arm_description")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/robot_arm_description")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/robot_arm_description")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/robot_arm_description")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/robot_arm_description")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/packages/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/packages")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/packages/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/packages")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_index/share/ament_index/resource_index/packages/robot_arm_description" "DESTINATION" "share/ament_index/resource_index/packages")
 
 # install(FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_core/robot_arm_descriptionConfig.cmake" "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_core/robot_arm_descriptionConfig-version.cmake" "DESTINATION" "share/robot_arm_description/cmake")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_core/robot_arm_descriptionConfig.cmake" "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_core/robot_arm_descriptionConfig-version.cmake" "DESTINATION" "share/robot_arm_description/cmake")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_core/robot_arm_descriptionConfig.cmake" "/home/sw/manual_total_ws/build/robot_arm_description/ament_cmake_core/robot_arm_descriptionConfig-version.cmake" "DESTINATION" "share/robot_arm_description/cmake")
 
-# install(FILES "/home/sw/manual_total_ws/rmd/src/robot_arm_description/package.xml" "DESTINATION" "share/robot_arm_description")
-ament_cmake_symlink_install_files("/home/sw/manual_total_ws/rmd/src/robot_arm_description" FILES "/home/sw/manual_total_ws/rmd/src/robot_arm_description/package.xml" "DESTINATION" "share/robot_arm_description")
+# install(FILES "/home/sw/manual_total_ws/src/robot_arm_description/package.xml" "DESTINATION" "share/robot_arm_description")
+ament_cmake_symlink_install_files("/home/sw/manual_total_ws/src/robot_arm_description" FILES "/home/sw/manual_total_ws/src/robot_arm_description/package.xml" "DESTINATION" "share/robot_arm_description")

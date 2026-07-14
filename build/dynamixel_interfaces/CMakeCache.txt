@@ -370,7 +370,7 @@ dynamixel_interfaces_BINARY_DIR:STATIC=/home/sw/manual_total_ws/build/dynamixel_
 dynamixel_interfaces_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-dynamixel_interfaces_SOURCE_DIR:STATIC=/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces
+dynamixel_interfaces_SOURCE_DIR:STATIC=/home/sw/manual_total_ws/src/dynamixel_interfaces
 
 //Dependencies for the target
 dynamixel_interfaces__rosidl_generator_c_LIB_DEPENDS:STATIC=general;std_msgs::std_msgs__rosidl_generator_c;general;builtin_interfaces::builtin_interfaces__rosidl_generator_c;general;geometry_msgs::geometry_msgs__rosidl_generator_c;general;rosidl_runtime_c::rosidl_runtime_c;general;rcutils::rcutils;
@@ -568,7 +568,7 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/sw/manual_total_ws/src/dynamixel_interfaces
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER

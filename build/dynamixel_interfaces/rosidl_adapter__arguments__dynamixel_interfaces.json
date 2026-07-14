@@ -1,9 +1,9 @@
 {
   "package_name": "dynamixel_interfaces",
   "non_idl_tuples": [
-    "/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces:msg/DynamixelState.msg",
-    "/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces:srv/GetDataFromDxl.srv",
-    "/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces:srv/SetDataToDxl.srv",
-    "/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces:srv/RebootDxl.srv"
+    "/home/sw/manual_total_ws/src/dynamixel_interfaces:msg/DynamixelState.msg",
+    "/home/sw/manual_total_ws/src/dynamixel_interfaces:srv/GetDataFromDxl.srv",
+    "/home/sw/manual_total_ws/src/dynamixel_interfaces:srv/SetDataToDxl.srv",
+    "/home/sw/manual_total_ws/src/dynamixel_interfaces:srv/RebootDxl.srv"
   ]
 }

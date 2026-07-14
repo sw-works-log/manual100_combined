@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/rmd/src/myactuator_rmd/include/myactuator_rmd/actuator_state/motor_status_1.hpp
