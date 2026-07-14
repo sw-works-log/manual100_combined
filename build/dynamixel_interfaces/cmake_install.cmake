@@ -1,4 +1,4 @@
-# Install script for directory: /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces
+# Install script for directory: /home/sw/manual_total_ws/src/dynamixel_interfaces
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

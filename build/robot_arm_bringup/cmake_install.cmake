@@ -1,4 +1,4 @@
-# Install script for directory: /home/sw/manual_total_ws/rmd/src/robot_arm_bringup
+# Install script for directory: /home/sw/manual_total_ws/src/robot_arm_bringup
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

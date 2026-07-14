@@ -1,1 +1,1 @@
-/home/sw/manual_total_ws/rmd/src/robot_arm_bringup/launch/test_rmd_only.launch.py
+/home/sw/manual_total_ws/src/robot_arm_bringup/launch/test_rmd_only.launch.py

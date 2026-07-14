@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/rmd/src/myactuator_rmd/include/myactuator_rmd/actuator_state/can_baud_rate.hpp

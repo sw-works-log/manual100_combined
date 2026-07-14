@@ -53,7 +53,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/rmd/src/robot_arm_bringup
+CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/src/robot_arm_bringup
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/sw/manual_total_ws/build/robot_arm_bringup
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/sw/manual_total_ws/build/robot_arm_bringup && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/rmd/src/robot_arm_bringup /home/sw/manual_total_ws/rmd/src/robot_arm_bringup /home/sw/manual_total_ws/build/robot_arm_bringup /home/sw/manual_total_ws/build/robot_arm_bringup /home/sw/manual_total_ws/build/robot_arm_bringup/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sw/manual_total_ws/build/robot_arm_bringup && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/src/robot_arm_bringup /home/sw/manual_total_ws/src/robot_arm_bringup /home/sw/manual_total_ws/build/robot_arm_bringup /home/sw/manual_total_ws/build/robot_arm_bringup /home/sw/manual_total_ws/build/robot_arm_bringup/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

@@ -53,7 +53,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces
+CMAKE_SOURCE_DIR = /home/sw/manual_total_ws/src/dynamixel_interfaces
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/sw/manual_total_ws/build/dynamixel_interfaces
@@ -145,6 +145,6 @@ CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/clean:
 .PHONY : CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/clean
 
 CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/depend:
-	cd /home/sw/manual_total_ws/build/dynamixel_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces /home/sw/manual_total_ws/dxl/src/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces/CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sw/manual_total_ws/build/dynamixel_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sw/manual_total_ws/src/dynamixel_interfaces /home/sw/manual_total_ws/src/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces /home/sw/manual_total_ws/build/dynamixel_interfaces/CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/dynamixel_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/depend
 
