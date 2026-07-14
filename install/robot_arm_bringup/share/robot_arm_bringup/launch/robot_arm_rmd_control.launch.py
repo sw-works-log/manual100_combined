@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/src/robot_arm_bringup/launch/robot_arm_rmd_control.launch.py

@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_typesupport_fastrtps_c/dynamixel_interfaces/msg/detail/dynamixel_state__rosidl_typesupport_fastrtps_c.h

@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/src/robot_arm_bringup/scripts/manual_total_position_node.py

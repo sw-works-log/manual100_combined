@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_generator_py/dynamixel_interfaces/srv/_set_data_to_dxl.py
