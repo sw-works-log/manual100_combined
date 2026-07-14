@@ -1,1 +1,1 @@
-/home/sw/manual_total _ws/dxl/src/dynamixel_interfaces/msg/DynamixelState.msg
+/home/sw/manual_total_ws/dxl/src/dynamixel_interfaces/msg/DynamixelState.msg

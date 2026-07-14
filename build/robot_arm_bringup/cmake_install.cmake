@@ -1,8 +1,8 @@
-# Install script for directory: /home/sw/manual_total _ws/rmd/src/robot_arm_bringup
+# Install script for directory: /home/sw/manual_total_ws/rmd/src/robot_arm_bringup
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sw/manual_total _ws/install/robot_arm_bringup")
+  set(CMAKE_INSTALL_PREFIX "/home/sw/manual_total_ws/install/robot_arm_bringup")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,7 +43,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/sw/manual_total _ws/build/robot_arm_bringup/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+  include("/home/sw/manual_total_ws/build/robot_arm_bringup/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -54,5 +54,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sw/manual_total _ws/build/robot_arm_bringup/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sw/manual_total_ws/build/robot_arm_bringup/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

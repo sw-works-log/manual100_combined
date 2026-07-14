@@ -1,1 +1,1 @@
-/home/sw/manual_total _ws/build/dynamixel_interfaces/rosidl_generator_py/dynamixel_interfaces/srv/_get_data_from_dxl.py
+/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_generator_py/dynamixel_interfaces/srv/_get_data_from_dxl.py

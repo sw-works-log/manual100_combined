@@ -17,7 +17,6 @@ install(
 
 install(
   PROGRAMS
-    scripts/manual_3axis_position_node.py
     scripts/manual_total_position_node.py
     scripts/gamepad_position_controller.py
     scripts/safety_manager.py

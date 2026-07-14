@@ -1,8 +1,8 @@
-# Install script for directory: /home/sw/manual_total _ws/build/dynamixel_interfaces/dynamixel_interfaces__rs
+# Install script for directory: /home/sw/manual_total_ws/build/dynamixel_interfaces/dynamixel_interfaces__rs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sw/manual_total _ws/install/dynamixel_interfaces")
+  set(CMAKE_INSTALL_PREFIX "/home/sw/manual_total_ws/install/dynamixel_interfaces")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
