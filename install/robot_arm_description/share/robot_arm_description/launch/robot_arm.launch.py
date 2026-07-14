@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/src/robot_arm_description/launch/robot_arm.launch.py

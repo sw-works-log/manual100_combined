@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/build/dynamixel_interfaces/rosidl_typesupport_fastrtps_c/dynamixel_interfaces/srv/detail/reboot_dxl__rosidl_typesupport_fastrtps_c.h
