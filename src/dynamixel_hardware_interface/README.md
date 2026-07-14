@@ -1,5 +1,9 @@
 # **Dynamixel Hardware Interface User Guide**
 
+> **이 워크스페이스의 사용 상태:** 현재 이 디렉터리에는 `COLCON_IGNORE`가 있어 로컬 소스를 빌드하지 않고 `/opt/ros/humble`에 설치된 `dynamixel_hardware_interface` 1.5.0을 사용합니다. `manual_total_robot.urdf.xacro`의 Dynamixel 블록도 아직 비활성화되어 있습니다. 로컬 수정 또는 전체 관절 통합을 시작할 때는 루트 README의 활성화 절차를 먼저 확인하세요.
+
+아래는 원본 패키지 문서입니다.
+
 ## **1. Introduction**
 
 ROS 2 package providing a hardware interface for controlling [Dynamixel](https://www.dynamixel.com/) motors via the [ros2_control framework](https://github.com/ros-controls/ros2_control). This repository includes the **dynamixel_hardware_interface plugin** for seamless integration with ROS 2 control, along with the [dynamixel_interfaces](https://github.com/ROBOTIS-GIT/dynamixel_interfaces) package containing custom message definitions used by the interface

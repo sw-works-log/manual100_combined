@@ -1,4 +1,16 @@
-# MyActuator RMD X-series Hardware
+# rmd_hardware_interface
+
+`rmd_sdk`를 ROS 2 `ros2_control` actuator interface로 연결합니다. `robot_arm_description`의 각 RMD 관절은 아래 pluginlib 식별자를 사용합니다.
+
+```xml
+<plugin>rmd_hardware_interface/MyActuatorRmdHardwareInterface</plugin>
+```
+
+관절별 CAN interface, actuator ID, 속도 제한과 timeout은 URDF/Xacro의 hardware parameter로 전달됩니다. 일반적인 관절 추가는 이 패키지가 아니라 `robot_arm_description`과 `robot_arm_bringup`에서 수행합니다.
+
+## Upstream documentation
+
+### MyActuator RMD X-series Hardware
 
 Author: [Tobit Flatscher](https://github.com/2b-t) (2024)
 
@@ -42,4 +54,3 @@ The `ifname` has to correspond to the name of the CAN interface as shown by `$ i
 | ![Effort and velocity without low-pass filter](./media/without_low_pass_filter.png) | ![Effort and velocity with low-pass filter](./media/with_low_pass_filter.png) |
 
 Similarly the cycle-time for the asynchronous thread interfacing the actuator through CAN can be specified. For examples refer to the `rmd_sdk_description` package.
-

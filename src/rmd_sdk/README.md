@@ -1,4 +1,17 @@
-# MyActuator RMD X-series CAN driver SDK
+# rmd_sdk
+
+이 워크스페이스에서 RMD 모터의 SocketCAN 통신과 명령 프로토콜을 담당하는 저수준 C++ SDK입니다. 원본 `myactuator_rmd` 패키지를 프로젝트 명명 규칙에 맞게 `rmd_sdk`로 변경했으며 C++ namespace, include 경로와 Python binding도 같은 이름을 사용합니다.
+
+일반적인 로봇 운용 코드는 이 패키지를 직접 호출하지 않고 `rmd_hardware_interface`를 통해 ros2_control을 사용합니다. CAN 프레임이나 RMD 프로토콜을 수정할 때만 이 패키지를 변경합니다.
+
+```cpp
+#include <rmd_sdk/actuator_interface.hpp>
+#include <rmd_sdk/driver/can_driver.hpp>
+```
+
+## Upstream documentation
+
+### MyActuator RMD X-series CAN driver SDK
 
 Author: [Tobit Flatscher](https://github.com/2b-t) (2023 - 2024)
 
