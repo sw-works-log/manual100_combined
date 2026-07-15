@@ -1,1 +1,0 @@
-/home/sw/manual_total_ws/src/dynamixel_interfaces/msg/DynamixelState.msg
