@@ -17,17 +17,15 @@
 | 1 | `base_rotate_joint` | Dynamixel | 비활성 |
 | 2 | `shoulder_lift_joint` | RMD, CAN ID 4 | 활성 |
 | 3 | `elbow_joint` | RMD, CAN ID 5 | 활성 |
-| 4 | `wrist_joint` | RMD, CAN ID 6 | 비활성 |
+| 4 | `wrist_joint` | RMD, CAN ID 6 | 활성 |
 | 5 | `gripper_joint` | Dynamixel | 비활성 |
 
 CAN ID는 launch 인자로 변경할 수 있으며 표의 값은 기본값입니다.
 
-## wrist 활성화 체크리스트
+## wrist 설정
 
-1. `manual_total_robot.urdf.xacro`에서 `wrist_rmd` actuator 선언을 활성화합니다.
-2. `manual_total_controllers.yaml`의 동일한 위치에 `wrist_joint`를 추가합니다.
-3. `manual_total_position_node.py`의 `JOINTS`, `rates`, `lower_limits`, `upper_limits`를 같은 순서로 확장합니다.
-4. 낮은 `max_velocity`에서 관절 방향과 영점을 검증합니다.
+`wrist_joint`는 controller와 수동 위치 노드의 세 번째 관절로 활성화되어 있습니다.
+실기 구동 전 낮은 `max_velocity`에서 관절 방향과 영점을 검증합니다.
 
 ## Dynamixel 활성화 체크리스트
 

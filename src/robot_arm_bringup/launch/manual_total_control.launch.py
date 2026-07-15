@@ -16,7 +16,7 @@ def generate_launch_description():
         # Conservative bringup limit in degrees per second.
         DeclareLaunchArgument('max_velocity', default_value='5.0'),
         DeclareLaunchArgument('timeout', default_value='0'),
-        # RMD CAN ID 4, 5 단독 테스트 중에는 Dynamixel 인자를 비활성화합니다.
+        # RMD CAN ID 4, 5, 6 구동 중에는 Dynamixel 인자를 비활성화합니다.
         # DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
         # DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
         DeclareLaunchArgument('joy_dev', default_value='/dev/input/js0'),
@@ -25,7 +25,7 @@ def generate_launch_description():
         DeclareLaunchArgument('emergency_stop_button', default_value='10'),
         DeclareLaunchArgument(
             'rmd_hardware_components',
-            default_value="['shoulder_rmd', 'elbow_rmd']"),
+            default_value="['shoulder_rmd', 'elbow_rmd', 'wrist_rmd']"),
     ]
     description_share = get_package_share_directory('robot_arm_description')
     xacro_file = description_share + '/urdf/manual_total_robot.urdf.xacro'

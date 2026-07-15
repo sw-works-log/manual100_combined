@@ -13,6 +13,5 @@ position_controller:
     joints:
       - shoulder_lift_joint
       - elbow_joint
-      # wrist 하드웨어 세팅 전까지 비활성화
-      # - wrist_joint
+      - wrist_joint
     interface_name: position
