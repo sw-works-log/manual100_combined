@@ -15,7 +15,7 @@ ROS 2 Humble + ros2_control + SocketCAN 기반
 | wrist (`wrist_joint`) | RMD | CAN | 비활성 | 하드웨어 설정 후 코드 주석 해제 필요 |
 | gripper (`gripper_joint`) | Dynamixel | TTL | 비활성 | URDF의 ros2_control 블록 주석 처리 |
 
-기본 CAN 인터페이스는 `can0`, 게임패드 장치는 `/dev/input/js0`
+기본 CAN 인터페이스는 `can_arm`, 게임패드 장치는 `/dev/input/js0`
 현재 활성 controller 배열에는 `shoulder_lift_joint`, `elbow_joint`만 포함되어 있음
 
 ## 패키지 구성
@@ -59,7 +59,7 @@ source install/setup.bash
 ### 1) 장치 연결 확인
 
 ```bash
-ip -details link show can0
+ip -details link show can_arm
 ls -l /dev/input/js0
 ```
 
@@ -77,7 +77,7 @@ ros2 launch robot_arm_bringup robot_arm_bringup.launch.py
 
 ```bash
 ros2 launch robot_arm_bringup robot_arm_bringup.launch.py \
-  ifname:=can0 shoulder_actuator_id:=4 elbow_actuator_id:=5 max_velocity:=5.0
+  ifname:=can_arm shoulder_actuator_id:=4 elbow_actuator_id:=5 max_velocity:=5.0
 ```
 
 ### 3) RMD 하드웨어 단독 시험

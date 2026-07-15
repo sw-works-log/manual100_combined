@@ -46,7 +46,7 @@ def generate_launch_description():
     )
     ifname_cmd = DeclareLaunchArgument(
         ifname_parameter_name,
-        default_value='can0',
+        default_value='can_arm',
         description='CAN 인터페이스 이름'
     )
     launch_joy_cmd = DeclareLaunchArgument(

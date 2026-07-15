@@ -9,7 +9,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     arguments = [
-        DeclareLaunchArgument('ifname', default_value='can0'),
+        DeclareLaunchArgument('ifname', default_value='can_arm'),
         DeclareLaunchArgument('shoulder_actuator_id', default_value='4'),
         DeclareLaunchArgument('elbow_actuator_id', default_value='5'),
         DeclareLaunchArgument('wrist_actuator_id', default_value='6'),
