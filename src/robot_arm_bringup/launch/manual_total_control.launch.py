@@ -14,9 +14,13 @@ def generate_launch_description():
         DeclareLaunchArgument('elbow_actuator_id', default_value='5'),
         DeclareLaunchArgument('wrist_actuator_id', default_value='6'),
         # Per-joint RMD operation limits in degrees per second.
-        DeclareLaunchArgument('shoulder_max_velocity', default_value='15.0'),
-        DeclareLaunchArgument('elbow_max_velocity', default_value='20.0'),
-        DeclareLaunchArgument('wrist_max_velocity', default_value='30.0'),
+        # DeclareLaunchArgument('shoulder_max_velocity', default_value='15.0'),
+        # DeclareLaunchArgument('elbow_max_velocity', default_value='20.0'),
+        # DeclareLaunchArgument('wrist_max_velocity', default_value='30.0'),
+        # Low-speed calibration/test limits.
+        DeclareLaunchArgument('shoulder_max_velocity', default_value='5.0'),
+        DeclareLaunchArgument('elbow_max_velocity', default_value='5.0'),
+        DeclareLaunchArgument('wrist_max_velocity', default_value='5.0'),
         DeclareLaunchArgument('timeout', default_value='0'),
         DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
         DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),

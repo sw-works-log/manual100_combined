@@ -19,11 +19,17 @@ class ManualTotalPositionNode(Node):
         self.declare_parameter('command_topic', '/position_controller/commands')
         self.declare_parameter('publish_rate', 20.0)
         # 관절 순서는 JOINTS 및 controller YAML과 동일해야 합니다 (rad/s, rad).
-        # Operation command rates. Keep each RMD target rate below its hardware
-        # velocity limit (shoulder/elbow/wrist: 15/20/30 deg/s).
-        self.declare_parameter('rates', [0.17, 0.26, 0.35, 0.25, 0.25])
-        self.declare_parameter('lower_limits', [0.0, -1.5708, -2.0944, -2.3562, -3.1416])
-        self.declare_parameter('upper_limits', [2.0944, 0.3491, 2.0944, 2.3562, 3.1416])
+        # Operation rates (RMD: shoulder/elbow/wrist, Dynamixel: gripper/base).
+        # self.declare_parameter('rates', [0.17, 0.26, 0.35, 0.25, 0.25])
+        # Low-speed calibration/test rates. RMD: 0.03 rad/s (about 1.72 deg/s).
+        self.declare_parameter('rates', [0.03, 0.03, 0.03, 0.25, 0.25])
+        # Operation angle limits.
+        # self.declare_parameter('lower_limits', [0.0, -1.5708, -2.0944, -2.3562, -3.1416])
+        # self.declare_parameter('upper_limits', [2.0944, 0.3491, 2.0944, 2.3562, 3.1416])
+        # Calibration/test limits: widen only the three RMD joints to +/-720 deg;
+        # keep the Dynamixel gripper/base limits unchanged.
+        self.declare_parameter('lower_limits', [-12.5664, -12.5664, -12.5664, -2.3562, -3.1416])
+        self.declare_parameter('upper_limits', [12.5664, 12.5664, 12.5664, 2.3562, 3.1416])
         self.declare_parameter('shoulder_axis', 3)
         self.declare_parameter('elbow_axis', 4)
         self.declare_parameter('wrist_axis', 1)
