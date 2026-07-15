@@ -10,24 +10,21 @@ from std_msgs.msg import Bool, Float64MultiArray
 
 
 class ManualTotalPositionNode(Node):
-    # wrist 하드웨어 활성화 시 controller YAML의 동일 위치에 wrist_joint를 추가하고
-    # JOINTS/rates/lower_limits/upper_limits에도 같은 배열 위치로 추가해야 합니다.
-    # RMD CAN ID 4, 5 단독 테스트 구성입니다. Dynamixel을 복구할 때
-    # gripper_joint/base_rotate_joint와 각 관절의 rates/limits/입력도 함께 복구합니다.
-    JOINTS = ['shoulder_lift_joint', 'elbow_joint']
+    JOINTS = [
+        'shoulder_lift_joint', 'elbow_joint', 'wrist_joint',
+        'gripper_joint', 'base_rotate_joint']
 
     def __init__(self):
         super().__init__('manual_total_position_node')
         self.declare_parameter('command_topic', '/position_controller/commands')
         self.declare_parameter('publish_rate', 20.0)
-        # 변경 가능: RMD 관절별 소프트웨어 속도 제한 [shoulder, elbow] (rad/s).
-        self.declare_parameter('rates', [0.25, 0.25])
-        # 변경 가능: RMD 관절별 소프트웨어 최소 각도 [shoulder, elbow] (rad).
-        self.declare_parameter('lower_limits', [-3.14159, -3.14159])
-        # 변경 가능: RMD 관절별 소프트웨어 최대 각도 [shoulder, elbow] (rad).
-        self.declare_parameter('upper_limits', [3.14159, 3.14159])
+        # 관절 순서는 JOINTS 및 controller YAML과 동일해야 합니다 (rad/s, rad).
+        self.declare_parameter('rates', [0.25, 0.25, 0.25, 0.25, 0.25])
+        self.declare_parameter('lower_limits', [0.0, -1.5708, -2.0944, -2.3562, -3.1416])
+        self.declare_parameter('upper_limits', [2.0944, 0.3491, 2.0944, 2.3562, 3.1416])
         self.declare_parameter('shoulder_axis', 3)
         self.declare_parameter('elbow_axis', 4)
+        self.declare_parameter('wrist_axis', 1)
         self.declare_parameter('axis_threshold', 0.5)
         self.declare_parameter('gripper_positive_button', 1)
         self.declare_parameter('gripper_negative_button', 3)
@@ -43,6 +40,7 @@ class ManualTotalPositionNode(Node):
             raise ValueError('rates/lower_limits/upper_limits must follow the controller joint order')
         self.shoulder_axis = int(self.get_parameter('shoulder_axis').value)
         self.elbow_axis = int(self.get_parameter('elbow_axis').value)
+        self.wrist_axis = int(self.get_parameter('wrist_axis').value)
         self.axis_threshold = float(self.get_parameter('axis_threshold').value)
         self.button_indices = [int(self.get_parameter(n).value) for n in
                                ('gripper_positive_button', 'gripper_negative_button',
@@ -151,7 +149,13 @@ class ManualTotalPositionNode(Node):
         directions = [0.0] * len(self.JOINTS)
         joy_fresh = (now - self.last_joy_time).nanoseconds * 1e-9 <= self.joy_timeout
         if self.joy is not None and joy_fresh:
-            directions = [self.axis(self.shoulder_axis), self.axis(self.elbow_axis)]
+            directions = [
+                self.axis(self.shoulder_axis),
+                self.axis(self.elbow_axis),
+                self.axis(self.wrist_axis),
+                float(self.button(self.button_indices[0])) - float(self.button(self.button_indices[1])),
+                float(self.button(self.button_indices[2])) - float(self.button(self.button_indices[3])),
+            ]
         for i, direction in enumerate(directions):
             self.target[i] = min(max(self.target[i] + direction * self.rates[i] * dt, self.lower[i]), self.upper[i])
         self.publisher.publish(Float64MultiArray(data=self.target))

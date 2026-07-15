@@ -155,14 +155,8 @@
   </xacro:macro>
   <xacro:rmd_actuator name="shoulder_rmd" joint_name="shoulder_lift_joint" actuator_id="$(arg shoulder_actuator_id)"/>
   <xacro:rmd_actuator name="elbow_rmd" joint_name="elbow_joint" actuator_id="$(arg elbow_actuator_id)"/>
-  <!-- wrist 하드웨어 세팅 전까지 CAN 액추에이터 등록을 비활성화합니다.
-  활성화할 때 아래 항목과 controller/manual node의 wrist 항목을 같은 배열 위치에 함께 추가해야 합니다.
   <xacro:rmd_actuator name="wrist_rmd" joint_name="wrist_joint" actuator_id="$(arg wrist_actuator_id)"/>
-  -->
 
-  <!-- RMD CAN ID 4, 5 단독 구동 테스트 중에는 Dynamixel을 초기화하지 않습니다.
-  다시 사용할 때 이 블록과 manual_total_controllers.yaml 및
-  manual_total_position_node.py의 gripper/base_yaw 항목을 함께 활성화해야 합니다.
   <ros2_control name="dynamixel_system" type="system">
     <hardware>
       <plugin>dynamixel_hardware_interface/DynamixelHardware</plugin>
@@ -183,5 +177,4 @@
     <gpio name="dxl1"><param name="type">dxl</param><param name="ID">4</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
     <gpio name="dxl2"><param name="type">dxl</param><param name="ID">0</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
   </ros2_control>
-  -->
 </robot>

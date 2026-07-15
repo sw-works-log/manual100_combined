@@ -16,16 +16,16 @@ def generate_launch_description():
         # Conservative bringup limit in degrees per second.
         DeclareLaunchArgument('max_velocity', default_value='5.0'),
         DeclareLaunchArgument('timeout', default_value='0'),
-        # RMD CAN ID 4, 5 단독 테스트 중에는 Dynamixel 인자를 비활성화합니다.
-        # DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
-        # DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
+        DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
+        DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
         DeclareLaunchArgument('joy_dev', default_value='/dev/input/js0'),
         DeclareLaunchArgument('control_toggle_button', default_value='9'),
         DeclareLaunchArgument('manual_mode_button', default_value='5'),
         DeclareLaunchArgument('emergency_stop_button', default_value='10'),
+        DeclareLaunchArgument('wrist_axis', default_value='1'),
         DeclareLaunchArgument(
             'rmd_hardware_components',
-            default_value="['shoulder_rmd', 'elbow_rmd']"),
+            default_value="['shoulder_rmd', 'elbow_rmd', 'wrist_rmd']"),
     ]
     description_share = get_package_share_directory('robot_arm_description')
     xacro_file = description_share + '/urdf/manual_total_robot.urdf.xacro'
@@ -36,7 +36,9 @@ def generate_launch_description():
                      ' elbow_actuator_id:=', LaunchConfiguration('elbow_actuator_id'),
                      ' wrist_actuator_id:=', LaunchConfiguration('wrist_actuator_id'),
                      ' max_velocity:=', LaunchConfiguration('max_velocity'),
-                     ' timeout:=', LaunchConfiguration('timeout')]
+                     ' timeout:=', LaunchConfiguration('timeout'),
+                     ' dxl_port_name:=', LaunchConfiguration('dxl_port_name'),
+                     ' dxl_baud_rate:=', LaunchConfiguration('dxl_baud_rate')]
     robot_description = {'robot_description': ParameterValue(Command(xacro_command), value_type=str)}
     control = Node(package='controller_manager', executable='ros2_control_node',
                    parameters=[controllers, robot_description], output='screen')
@@ -58,7 +60,8 @@ def generate_launch_description():
                  'manual_mode_button': LaunchConfiguration('manual_mode_button'),
                  'emergency_stop_button': LaunchConfiguration('emergency_stop_button')}]),
         Node(package='robot_arm_bringup', executable='gamepad_position_controller.py',
-             name='gamepad_position_controller', output='screen'),
+             name='gamepad_position_controller', output='screen', parameters=[{
+                 'wrist_axis': LaunchConfiguration('wrist_axis')}]),
         Node(package='robot_arm_bringup', executable='semiauto_placeholder.py',
              name='semiauto_placeholder', output='screen'),
     ]
