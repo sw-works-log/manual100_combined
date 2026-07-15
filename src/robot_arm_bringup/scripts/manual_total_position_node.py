@@ -19,7 +19,9 @@ class ManualTotalPositionNode(Node):
         self.declare_parameter('command_topic', '/position_controller/commands')
         self.declare_parameter('publish_rate', 20.0)
         # 관절 순서는 JOINTS 및 controller YAML과 동일해야 합니다 (rad/s, rad).
-        self.declare_parameter('rates', [0.25, 0.25, 0.25, 0.25, 0.25])
+        # Operation command rates. Keep each RMD target rate below its hardware
+        # velocity limit (shoulder/elbow/wrist: 15/20/30 deg/s).
+        self.declare_parameter('rates', [0.17, 0.26, 0.35, 0.25, 0.25])
         self.declare_parameter('lower_limits', [0.0, -1.5708, -2.0944, -2.3562, -3.1416])
         self.declare_parameter('upper_limits', [2.0944, 0.3491, 2.0944, 2.3562, 3.1416])
         self.declare_parameter('shoulder_axis', 3)

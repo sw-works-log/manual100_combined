@@ -13,8 +13,10 @@ def generate_launch_description():
         DeclareLaunchArgument('shoulder_actuator_id', default_value='4'),
         DeclareLaunchArgument('elbow_actuator_id', default_value='5'),
         DeclareLaunchArgument('wrist_actuator_id', default_value='6'),
-        # Conservative bringup limit in degrees per second.
-        DeclareLaunchArgument('max_velocity', default_value='5.0'),
+        # Per-joint RMD operation limits in degrees per second.
+        DeclareLaunchArgument('shoulder_max_velocity', default_value='15.0'),
+        DeclareLaunchArgument('elbow_max_velocity', default_value='20.0'),
+        DeclareLaunchArgument('wrist_max_velocity', default_value='30.0'),
         DeclareLaunchArgument('timeout', default_value='0'),
         DeclareLaunchArgument('dxl_port_name', default_value='/dev/ttyUSB0'),
         DeclareLaunchArgument('dxl_baud_rate', default_value='1000000'),
@@ -35,7 +37,9 @@ def generate_launch_description():
                      ' shoulder_actuator_id:=', LaunchConfiguration('shoulder_actuator_id'),
                      ' elbow_actuator_id:=', LaunchConfiguration('elbow_actuator_id'),
                      ' wrist_actuator_id:=', LaunchConfiguration('wrist_actuator_id'),
-                     ' max_velocity:=', LaunchConfiguration('max_velocity'),
+                     ' shoulder_max_velocity:=', LaunchConfiguration('shoulder_max_velocity'),
+                     ' elbow_max_velocity:=', LaunchConfiguration('elbow_max_velocity'),
+                     ' wrist_max_velocity:=', LaunchConfiguration('wrist_max_velocity'),
                      ' timeout:=', LaunchConfiguration('timeout'),
                      ' dxl_port_name:=', LaunchConfiguration('dxl_port_name'),
                      ' dxl_baud_rate:=', LaunchConfiguration('dxl_baud_rate')]
