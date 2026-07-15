@@ -43,7 +43,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Safe first-contact test for RMD X-series motors."
     )
-    parser.add_argument("-i", "--interface", default="can0", help="SocketCAN interface")
+    parser.add_argument("-i", "--interface", default="can_arm", help="SocketCAN interface")
     parser.add_argument(
         "--id",
         type=int,
