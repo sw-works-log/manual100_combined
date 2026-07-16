@@ -15,6 +15,9 @@
   <xacro:arg name="wrist_max_velocity" default="5.0"/>
   <xacro:arg name="dxl_port_name" default="/dev/ttyUSB0"/>
   <xacro:arg name="dxl_baud_rate" default="1000000"/>
+  <!-- Empty means the normal five-axis setup. Test launch sets one joint name. -->
+  <xacro:arg name="test_joint" default=""/>
+  <xacro:property name="test_joint" value="$(arg test_joint)"/>
 
   <!--
     Geometry/joint origins come from the confirmed army_manipulator model.
@@ -74,7 +77,10 @@
   <joint name="shoulder_lift_joint" type="revolute">
     <parent link="base_yaw_link"/><child link="shoulder_link"/>
     <origin xyz="0 0 ${off_shoulder}" rpy="0 0 0"/><axis xyz="0 1 0"/>
-    <limit lower="0.0" upper="2.0944" effort="120.0" velocity="1.047"/>
+    <limit
+      lower="${-12.5664 if test_joint == 'shoulder_lift_joint' else 0.0}"
+      upper="${12.5664 if test_joint == 'shoulder_lift_joint' else 2.0944}"
+      effort="120.0" velocity="1.047"/>
     <dynamics damping="1.0" friction="0.1"/>
   </joint>
   <link name="elbow_link">
@@ -94,7 +100,10 @@
   <joint name="elbow_joint" type="revolute">
     <parent link="shoulder_link"/><child link="elbow_link"/>
     <origin xyz="${L1} 0 ${off_elbow}" rpy="0 0 0"/><axis xyz="0 1 0"/>
-    <limit lower="-1.5708" upper="0.3491" effort="60.0" velocity="1.571"/>
+    <limit
+      lower="${-12.5664 if test_joint == 'elbow_joint' else -1.5708}"
+      upper="${12.5664 if test_joint == 'elbow_joint' else 0.3491}"
+      effort="60.0" velocity="1.571"/>
     <dynamics damping="0.5" friction="0.05"/>
   </joint>
   <link name="wrist_link">
@@ -108,7 +117,10 @@
   <joint name="wrist_joint" type="revolute">
     <parent link="elbow_link"/><child link="wrist_link"/>
     <origin xyz="${L2} 0 ${off_wrist}" rpy="0 0 0"/><axis xyz="0 1 0"/>
-    <limit lower="-2.0944" upper="2.0944" effort="36.0" velocity="2.618"/>
+    <limit
+      lower="${-12.5664 if test_joint == 'wrist_joint' else -2.0944}"
+      upper="${12.5664 if test_joint == 'wrist_joint' else 2.0944}"
+      effort="36.0" velocity="2.618"/>
     <dynamics damping="0.2" friction="0.02"/>
   </joint>
   <link name="gripper_link">
@@ -159,28 +171,41 @@
       </joint>
     </ros2_control>
   </xacro:macro>
-  <xacro:rmd_actuator name="shoulder_rmd" joint_name="shoulder_lift_joint" actuator_id="$(arg shoulder_actuator_id)" max_velocity="$(arg shoulder_max_velocity)"/>
-  <xacro:rmd_actuator name="elbow_rmd" joint_name="elbow_joint" actuator_id="$(arg elbow_actuator_id)" max_velocity="$(arg elbow_max_velocity)"/>
-  <xacro:rmd_actuator name="wrist_rmd" joint_name="wrist_joint" actuator_id="$(arg wrist_actuator_id)" max_velocity="$(arg wrist_max_velocity)"/>
+  <xacro:if value="${test_joint == '' or test_joint == 'shoulder_lift_joint'}">
+    <xacro:rmd_actuator name="shoulder_rmd" joint_name="shoulder_lift_joint" actuator_id="$(arg shoulder_actuator_id)" max_velocity="$(arg shoulder_max_velocity)"/>
+  </xacro:if>
+  <xacro:if value="${test_joint == '' or test_joint == 'elbow_joint'}">
+    <xacro:rmd_actuator name="elbow_rmd" joint_name="elbow_joint" actuator_id="$(arg elbow_actuator_id)" max_velocity="$(arg elbow_max_velocity)"/>
+  </xacro:if>
+  <xacro:if value="${test_joint == '' or test_joint == 'wrist_joint'}">
+    <xacro:rmd_actuator name="wrist_rmd" joint_name="wrist_joint" actuator_id="$(arg wrist_actuator_id)" max_velocity="$(arg wrist_max_velocity)"/>
+  </xacro:if>
 
-  <ros2_control name="dynamixel_system" type="system">
+  <xacro:if value="${test_joint == '' or test_joint == 'gripper_joint' or test_joint == 'base_rotate_joint'}">
+    <xacro:property name="dxl_joint_count" value="${2 if test_joint == '' else 1}"/>
+    <ros2_control name="dynamixel_system" type="system">
     <hardware>
       <plugin>dynamixel_hardware_interface/DynamixelHardware</plugin>
       <param name="port_name">$(arg dxl_port_name)</param><param name="baud_rate">$(arg dxl_baud_rate)</param>
       <param name="dynamixel_model_folder">/param/dxl_model</param>
-      <param name="number_of_joints">2</param><param name="number_of_transmissions">2</param>
+      <param name="number_of_joints">${dxl_joint_count}</param><param name="number_of_transmissions">${dxl_joint_count}</param>
       <param name="disable_torque_at_init">true</param><param name="error_timeout_ms">1000</param>
-      <param name="transmission_to_joint_matrix">1,0,0,1</param>
-      <param name="joint_to_transmission_matrix">1,0,0,1</param>
+      <param name="transmission_to_joint_matrix">${'1,0,0,1' if test_joint == '' else '1'}</param>
+      <param name="joint_to_transmission_matrix">${'1,0,0,1' if test_joint == '' else '1'}</param>
       <param name="dynamixel_state_pub_msg_name">dynamixel_hardware_interface/dxl_state</param>
       <param name="get_dynamixel_data_srv_name">dynamixel_hardware_interface/get_dxl_data</param>
       <param name="set_dynamixel_data_srv_name">dynamixel_hardware_interface/set_dxl_data</param>
       <param name="reboot_dxl_srv_name">dynamixel_hardware_interface/reboot_dxl</param>
       <param name="set_dxl_torque_srv_name">dynamixel_hardware_interface/set_dxl_torque</param>
     </hardware>
-    <joint name="gripper_joint"><command_interface name="position"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
-    <joint name="base_rotate_joint"><command_interface name="position"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
-    <gpio name="dxl1"><param name="type">dxl</param><param name="ID">4</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
-    <gpio name="dxl2"><param name="type">dxl</param><param name="ID">0</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
-  </ros2_control>
+      <xacro:if value="${test_joint == '' or test_joint == 'gripper_joint'}">
+        <joint name="gripper_joint"><command_interface name="position"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
+        <gpio name="dxl1"><param name="type">dxl</param><param name="ID">4</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
+      </xacro:if>
+      <xacro:if value="${test_joint == '' or test_joint == 'base_rotate_joint'}">
+        <joint name="base_rotate_joint"><command_interface name="position"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
+        <gpio name="dxl2"><param name="type">dxl</param><param name="ID">0</param><command_interface name="Goal Position"/><state_interface name="Present Position"/><state_interface name="Present Velocity"/><state_interface name="Present Current"/><param name="Return Delay Time">0</param></gpio>
+      </xacro:if>
+    </ros2_control>
+  </xacro:if>
 </robot>

@@ -18,6 +18,7 @@ install(
 install(
   PROGRAMS
     scripts/manual_total_position_node.py
+    scripts/single_axis_joystick_controller.py
     scripts/gamepad_position_controller.py
     scripts/safety_manager.py
     scripts/semiauto_placeholder.py
