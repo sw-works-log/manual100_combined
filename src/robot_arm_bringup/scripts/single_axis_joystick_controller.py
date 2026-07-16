@@ -12,11 +12,11 @@ from std_msgs.msg import Bool, Float64MultiArray
 
 class SingleAxisJoystickController(Node):
     JOINT_CONFIG = {
-        'shoulder_lift_joint': {'axis': 3, 'rate': 0.03},
-        'elbow_joint': {'axis': 4, 'rate': 0.03},
-        'wrist_joint': {'axis': 1, 'rate': 0.03},
-        'gripper_joint': {'positive_button': 1, 'negative_button': 3, 'rate': 0.25},
-        'base_rotate_joint': {'positive_button': 2, 'negative_button': 0, 'rate': 0.25},
+        'shoulder_lift_joint': {'axis': 3, 'rate': 0.1},
+        'elbow_joint': {'axis': 4, 'rate': 0.1},
+        'wrist_joint': {'axis': 1, 'rate': 0.1},
+        'gripper_joint': {'positive_button': 1, 'negative_button': 3, 'rate': 0.15},
+        'base_rotate_joint': {'positive_button': 2, 'negative_button': 0, 'rate': 0.15},
     }
 
     def __init__(self):

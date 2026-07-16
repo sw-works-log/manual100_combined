@@ -6,13 +6,13 @@
   <xacro:arg name="wrist_actuator_id" default="6"/>
   <xacro:arg name="timeout" default="0"/>
   <!-- Per-joint RMD operation limits in degrees per second. -->
-  <!-- <xacro:arg name="shoulder_max_velocity" default="15.0"/> -->
+  <xacro:arg name="shoulder_max_velocity" default="15.0"/>
   <!-- <xacro:arg name="elbow_max_velocity" default="20.0"/> -->
-  <!-- <xacro:arg name="wrist_max_velocity" default="30.0"/> -->
+  <xacro:arg name="wrist_max_velocity" default="30.0"/>
   <!-- Low-speed calibration/test limits. -->
-  <xacro:arg name="shoulder_max_velocity" default="5.0"/>
+  <!-- xacro:arg name="shoulder_max_velocity" default="5.0"/>-->
   <xacro:arg name="elbow_max_velocity" default="5.0"/>
-  <xacro:arg name="wrist_max_velocity" default="5.0"/>
+  <!-- xacro:arg name="wrist_max_velocity" default="5.0"/> -->
   <xacro:arg name="dxl_port_name" default="/dev/ttyUSB0"/>
   <xacro:arg name="dxl_baud_rate" default="1000000"/>
   <!-- Empty means the normal five-axis setup. Test launch sets one joint name. -->
@@ -171,13 +171,14 @@
       </joint>
     </ros2_control>
   </xacro:macro>
-  <xacro:if value="${test_joint == '' or test_joint == 'shoulder_lift_joint'}">
+  <!-- During a Dynamixel single-axis test all three RMDs stay active for pose holding. -->
+  <xacro:if value="${test_joint == '' or test_joint == 'shoulder_lift_joint' or test_joint == 'gripper_joint' or test_joint == 'base_rotate_joint'}">
     <xacro:rmd_actuator name="shoulder_rmd" joint_name="shoulder_lift_joint" actuator_id="$(arg shoulder_actuator_id)" max_velocity="$(arg shoulder_max_velocity)"/>
   </xacro:if>
-  <xacro:if value="${test_joint == '' or test_joint == 'elbow_joint'}">
+  <xacro:if value="${test_joint == '' or test_joint == 'elbow_joint' or test_joint == 'gripper_joint' or test_joint == 'base_rotate_joint'}">
     <xacro:rmd_actuator name="elbow_rmd" joint_name="elbow_joint" actuator_id="$(arg elbow_actuator_id)" max_velocity="$(arg elbow_max_velocity)"/>
   </xacro:if>
-  <xacro:if value="${test_joint == '' or test_joint == 'wrist_joint'}">
+  <xacro:if value="${test_joint == '' or test_joint == 'wrist_joint' or test_joint == 'gripper_joint' or test_joint == 'base_rotate_joint'}">
     <xacro:rmd_actuator name="wrist_rmd" joint_name="wrist_joint" actuator_id="$(arg wrist_actuator_id)" max_velocity="$(arg wrist_max_velocity)"/>
   </xacro:if>
 

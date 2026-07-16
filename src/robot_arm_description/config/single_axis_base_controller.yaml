@@ -5,7 +5,13 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
     position_controller:
       type: forward_command_controller/ForwardCommandController
+    rmd_hold_controller:
+      type: forward_command_controller/ForwardCommandController
 position_controller:
   ros__parameters:
     joints: [base_rotate_joint]
+    interface_name: position
+rmd_hold_controller:
+  ros__parameters:
+    joints: [shoulder_lift_joint, elbow_joint, wrist_joint]
     interface_name: position

@@ -8,11 +8,15 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 
 JOINTS = {
-    'shoulder': 'shoulder_lift_joint',
-    'elbow': 'elbow_joint',
-    'wrist': 'wrist_joint',
     'gripper': 'gripper_joint',
+    'gripper_joint': 'gripper_joint',
     'base': 'base_rotate_joint',
+    'base_rotate_joint': 'base_rotate_joint',
+}
+
+CONTROLLER_CONFIGS = {
+    'gripper_joint': 'single_axis_gripper_controller.yaml',
+    'base_rotate_joint': 'single_axis_base_controller.yaml',
 }
 
 
@@ -25,7 +29,7 @@ def launch_setup(context):
     joint = JOINTS[axis]
     description_share = get_package_share_directory('robot_arm_description')
     xacro_file = description_share + '/urdf/manual_total_robot.urdf.xacro'
-    controller_file = description_share + f'/config/single_axis_{axis}_controller.yaml'
+    controller_file = description_share + '/config/' + CONTROLLER_CONFIGS[joint]
     xacro_command = [
         FindExecutable(name='xacro'), ' ', xacro_file,
         ' test_joint:=', joint,
@@ -49,6 +53,9 @@ def launch_setup(context):
     position_spawner = Node(
         package='controller_manager', executable='spawner',
         arguments=['position_controller', '-c', '/controller_manager'])
+    rmd_hold_spawner = Node(
+        package='controller_manager', executable='spawner',
+        arguments=['rmd_hold_controller', '-c', '/controller_manager'])
 
     return [
         Node(
@@ -57,7 +64,8 @@ def launch_setup(context):
         control,
         state_spawner,
         RegisterEventHandler(OnProcessExit(
-            target_action=state_spawner, on_exit=[position_spawner])),
+            target_action=state_spawner,
+            on_exit=[rmd_hold_spawner, position_spawner])),
         Node(
             package='joy', executable='joy_node', name='joy_node',
             parameters=[{
@@ -82,8 +90,8 @@ def launch_setup(context):
 def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
-            'axis', default_value='shoulder',
-            description='One connected axis: shoulder, elbow, wrist, gripper, or base'),
+            'axis', default_value='gripper_joint',
+            description='Dynamixel axis: gripper/gripper_joint or base/base_rotate_joint'),
         DeclareLaunchArgument('ifname', default_value='can_arm'),
         DeclareLaunchArgument('shoulder_actuator_id', default_value='4'),
         DeclareLaunchArgument('elbow_actuator_id', default_value='5'),
